@@ -8,5 +8,15 @@ def lambda_handler(event, context):
         print("RDS snapshot backups started at %s...\n" % datetime.datetime.now())
         client.create_db_cluster_snapshot(
             DBClusterIdentifier=dbInstance,
-            DBClusterSnapshotIdentifier=dbInstance+'{}'.format(datetime.datetime.now().strftime("%y-%m-%d-%H"))
+            DBClusterSnapshotIdentifier=dbInstance+'{}'.format(datetime.datetime.now().strftime("%y-%m-%d-%H")),
+            Tags=[
+                {
+                    'Key': 'Database',
+                    'Value': dbInstance
+                }
+                {
+                    'Key': 'Time',
+                    'Value': dbInstance+'{}'.format(datetime.datetime.now().strftime("%y-%m-%d-%H"))
+                }
+            ]
         )
