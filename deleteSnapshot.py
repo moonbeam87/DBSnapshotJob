@@ -13,6 +13,6 @@ def lambda_handler(event, context):
             delta = datetime.now()-i('SnapshotCreateTime')
             if delta >= (365*2):
                 t = i('DBSnapshotIdentifier')
-                delete_db_snapshot(
+                client.delete_db_snapshot(
                     DBSnapshotIdentifier=t
                 )
