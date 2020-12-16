@@ -1,7 +1,7 @@
 import json
 import boto3
-import datetime
 from datetime import timedelta
+import datetime
 
 def lambda_handler(event, context):
     print("Connecting to RDS")
@@ -21,7 +21,7 @@ def lambda_handler(event, context):
         print(response)
         for i in response['DBSnapshots']:
             print(i)
-            delta = datetime.now()-i('SnapshotCreateTime')
+            delta = datetime.date.today()-i['SnapshotCreateTime']
             print("Time Delta:")
             print(delta)
             if delta >= (365*2):
